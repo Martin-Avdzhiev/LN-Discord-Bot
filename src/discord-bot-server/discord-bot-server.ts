@@ -14,6 +14,9 @@ client.once('ready', () => {
 
 // Command example
 client.on('messageCreate', async (message) => {
+    if (message.author.bot) return; // Returns if the message is from the bot
+    const userId = message.author.id; // Get unique ID from author
+    console.log(`${userId}-------------123`)
     // Generating QR code
     if (message.content.startsWith('!qr ')) {
         const textToEncode = message.content.slice(4); // Get the desired link after the command
@@ -27,7 +30,7 @@ client.on('messageCreate', async (message) => {
             const buffer = Buffer.from(base64Data, 'base64'); // Create Buffer from Base64
             const attachment = new AttachmentBuilder(buffer, { name: 'qrcode.png' }); // Create an attachment
 
-            await message.channel.send({ content: 'Ето вашият QR код:', files: [attachment] });
+            await message.channel.send({ content: 'Ето вашият QR код: ', files: [attachment] });
         } catch (error) {
             console.error('Error sending QR code:', error);
             message.channel.send('Не успяхме да генерираме QR код. Моля, опитайте отново.');
