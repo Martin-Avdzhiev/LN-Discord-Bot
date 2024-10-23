@@ -13,7 +13,6 @@ client.once('ready', () => {
 });
 
 // Command example
-// Command example
 client.on('messageCreate', async (message) => {
     // Generating QR code
     if (message.content.startsWith('!qr ')) {
