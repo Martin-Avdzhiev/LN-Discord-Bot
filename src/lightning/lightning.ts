@@ -17,7 +17,7 @@ async function createCharge() {
         // Creating a charge
         try {
             const response = await ZBD.createCharge(payload);
-            console.log('Зарядът е създаден успешно:', response);
+            console.log('The charge is created successfully:', response);
         } catch (error) {
             console.log({ error });
         }
