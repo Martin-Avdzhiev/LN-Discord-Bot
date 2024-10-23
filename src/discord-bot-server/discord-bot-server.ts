@@ -15,18 +15,18 @@ client.once('ready', () => {
 // Command example
 // Command example
 client.on('messageCreate', async (message) => {
-    // Команда за генериране на QR код
+    // Generating QR code
     if (message.content.startsWith('!qr ')) {
-        const textToEncode = message.content.slice(4); // Взимаме текста след командата
+        const textToEncode = message.content.slice(4); // Get the desired link after the command
         if (!textToEncode) {
             return message.channel.send('Моля, предоставете текст или URL за генериране на QR код.');
         }
         try {
             const qrCodeDataUrl = await generateQRCode(textToEncode);
-            // Конвертиране на Data URL в Buffer
-            const base64Data = qrCodeDataUrl.split(',')[1]; // Вземи частта след запетаята
-            const buffer = Buffer.from(base64Data, 'base64'); // Създаване на Buffer от Base64 данните
-            const attachment = new AttachmentBuilder(buffer, { name: 'qrcode.png' }); // Създаване на attachment
+            // Convert Data URL to Buffer
+            const base64Data = qrCodeDataUrl.split(',')[1];
+            const buffer = Buffer.from(base64Data, 'base64'); // Create Buffer from Base64
+            const attachment = new AttachmentBuilder(buffer, { name: 'qrcode.png' }); // Create an attachment
 
             await message.channel.send({ content: 'Ето вашият QR код:', files: [attachment] });
         } catch (error) {
