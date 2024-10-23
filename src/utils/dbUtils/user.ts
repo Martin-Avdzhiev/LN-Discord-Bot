@@ -1,15 +1,5 @@
 import * as fs from 'fs';
-
-// User type for saving in DB
-interface User {
-    userId: string;
-    payment: boolean;
-    amount: number;
-    role: Role;
-}
-
-// Type of Roles
-type Role = "Satoshi Nakamoto" | "USDT" | "Bitcoin" | "Ethereum";
+import { User } from '../../types/User';
 
 // Read data from JSON DB
 function readJsonFile(filePath: string): User[] {
@@ -54,6 +44,6 @@ console.log('Users:', users);
 writeJsonFile(filePath, users,  {
     "userId": "311176904726282242",
     "payment": true,
-    "amount": 30000,
+    "amount": 40000,
     "role": "Satoshi Nakamoto"
 });
